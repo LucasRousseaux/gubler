@@ -1,8 +1,9 @@
+
+
+
 <?php
 
-
-
-
+/*
 
 $menu = [];
 
@@ -33,5 +34,7 @@ $medico = [
   "medico-03" => ['img-03.jpg', 'Antonella González', 'Pedriatría'],
   "medico-04" => ['img-02.jpg', 'Javier Rodriguez', 'Cirugía'],
 ];
+
+*/
 
 ?>

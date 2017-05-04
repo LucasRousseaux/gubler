@@ -4,7 +4,7 @@ session_start();
 $mail = $_POST["email"];
 $pass = password_hash($_POST["password"], PASSWORD_DEFAULT);
 
-$usuarios = file_get_contents("json/usuarios.json");
+$usuarios = file_get_contents("../json/usuarios.json");
 
 $usuariosArray = explode(PHP_EOL, $usuarios);
 

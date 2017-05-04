@@ -1,0 +1,5 @@
+{
+	"medico-01": ["img-01.jpg", "Juan García", "Internista"],
+	"medico-03": ["img-03.jpg", "Antonella González", "Pedriatría"],
+	"medico-04": ["img-02.jpg", "Javier Rodriguez", "Cirugía"]
+}

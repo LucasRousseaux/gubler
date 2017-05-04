@@ -1,7 +1,5 @@
 <?php
 
-
-
 function esUnaImagen($ext) {
 	$ext = strtolower($ext);
 	if ($ext == 'jpg' || $ext == 'png' || $ext == 'gif') {

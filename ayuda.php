@@ -10,7 +10,7 @@
 
   <!-- Main -->
   <?php
-  $jstring = file_get_contents("ayuda.json");
+  $jstring = file_get_contents("json/ayuda.json");
   $faq_array = json_decode($jstring,true);
   ?>
 

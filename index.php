@@ -40,6 +40,7 @@
         <div class="container">
           <div class="row">
             <h2>Destacados por especialidad</h2>
+            <?php $medico = json_decode(file_get_contents('./json/medicos.json'),true); ?>
             <?php foreach ($medico as $value) {
               foreach ($value as  $key => $doctor) {
                 if($key == 0){
@@ -138,14 +139,6 @@
     <div class="separador">
 
     </div>
-    <!-- por alguna razón no sé porque no se vé el main, intento usar clear=both para eliminar el float de los elementos anteriores y no me funciona, si saben como mejorar esto sería buenísimo, en principio tiene display=none -->
-    <footer>
-      <div class="legal">
-        <p>Copyright (c) 2017 Copyright Holder All Rights Reserved.</p>
-      </div>
-    </footer>
-
-    <!-- JavaScript para bootstrap -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-  </body>
+    <?php require('php/footer.php') ?>
+    </body>
 </html>
