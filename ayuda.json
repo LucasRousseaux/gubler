@@ -1,0 +1,32 @@
+{
+	"vision": [{
+		"pregunta": "Cómo Funciona?",
+		"respuesta": "Una comunidad basada en compartir experiencias. Gubler permite a miles de personas compartir las experiencias sobre sus médicos preferidos a miles de personas en todo el mundo para ayudarlos a seleccionar el mejor médico según prácticas, ubicación y  recomendaciones de familiares, amigos o personas cercanas."
+	}, {
+		"pregunta": "Cuál es la escencia?",
+		"respuesta": "Gubler le ayuda a compartir su experiencia fácil, divertida y segura. Para ello, somos responsables de verificar perfiles personales y mantener una comunidad relevante para que los pacientes y los médicos puedan comunicarse de manera segura y sobre una plataforma de confianza."
+	}, {
+		"pregunta": "Servicio al Cliente",
+		"respuesta": "Si usted es un paciente o un médico, estamos aquí para ayudarle antes, durante y después de su experiencia. En el Centro de ayuda, encontrará las respuestas a las preguntas más comunes. Para todo lo demás, puede ponerse en contacto con nosotros en Gubler.com/contact."
+	}],
+	"obtener": [{
+		"pregunta": "Cómo Buscar ?",
+		"respuesta": "Los doctores Gubler publican sus prácticas en varios países. Sólo indique qué prácticas está buscando y su urgencia y Gubler le proporcionará una lista de los mejores médicos disponibles en función de su necesidad, ubicación y recomendaciones."
+	}, {
+		"pregunta": "Cómo Agendar Visitas ?",
+		"respuesta": "Hay diferentes maneras de reservar una cita con un doctor en Gubler. Algunos médicos quieren conocer al paciente antes de confirmar la cita, mientras que otros prefieren reducir el tiempo necesario para manejar las solicitudes mediante la función de cita instantánea. Dependiendo de su urgencia también puede tener una solicitud de reserva con un médico específico sujeto a confirmación."
+	}, {
+		"pregunta": "Atención Médica",
+		"respuesta": "¡Después de recibir su atención médica no olvide compartir su experiencia con Gubler y beneficiar a su comunidad!"
+	}],
+	"proveer": [{
+		"pregunta": "Cómo crear un Perfil? ",
+		"respuesta": "Lo primero que debes hacer es crear un perfil, solo para el Gubler. Tendrá que incluir su nombre, títulos, prácticas, especialidad y descripción de su experiencia, subir fotos y elegir las ubicaciones relacionadas o instalaciones médicas y sistemas de medicamentos o sistemas de pagos con los que está trabajando. Su perfil ayudará a los pacientes a tener una idea de lo que su experiencia es y cómo costar sus servicios."
+	}, {
+		"pregunta": "Cómo indicar la disponibilidad? ",
+		"respuesta": "Usted decide cuándo estará disponible en qué lugares. Gracias a la configuración del calendario y la gestión es más fácil que nunca para reservar, cancelar o modificar y la cita para los pacientes y los médicos."
+	}, {
+		"pregunta": "Cómo administrar las visitas?",
+		"respuesta": "Estamos aquí para ayudarte. Ponemos a su disposición todos los recursos y herramientas que necesita, tanto para administrar su calendario como para ofrecer sus servicios de atención médica."
+	}]
+}
