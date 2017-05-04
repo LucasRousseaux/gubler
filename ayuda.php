@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
   <!-- Header -->
   <?php require('php/head.php');?>
 
