@@ -10,8 +10,6 @@
   $faq_array = json_decode($jstring,true);
   ?>
 
-
-
     <main>
       <section class="home help">
         <div class="container">

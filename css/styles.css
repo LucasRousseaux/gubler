@@ -238,14 +238,6 @@ no tengo claro cómo serán por eso no le coloco el estilo a la etiqueta general
 /*fin de destacados*/
 
 
-/*footer */
-
-footer {
-  display: none;
-}
-
-/*fin footer*/
-
 /*pagina de registro*/
 
 .registro h2, .help h2 {
@@ -303,7 +295,11 @@ input[type="checkbox"]{
 
 /*pagina de ayuda*/
 
-.ayuda h4, .ayuda p {
+.ayuda h4, .ayuda p, .ayuda a {
+  color: white;
+}
+
+.nav-pills li a {
   color: white;
 }
 
