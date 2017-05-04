@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <!-- Header -->
-  <?php require('php/head.php');?>
+<?php require('php/head.php');?>
 
   <body>
   <!-- Barra de Navegación -->
-  <?php require('php/array.php');?>
   <?php require('php/nav.php') ?>
 
   <!-- Main -->

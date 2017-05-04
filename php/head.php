@@ -1,5 +1,4 @@
 <?php session_start(); ?>
-<?php require('array.php') ?>
 <?php require('funciones.php') ?>
 <!DOCTYPE html>
 <html>

@@ -1,4 +1,27 @@
-<?php require('php/head.php'); require('php/array.php'); ?>
+<?php
+
+if ($_POST) {
+
+$mail = $_POST["email"];
+$pass = password_hash($_POST["password"], PASSWORD_DEFAULT);
+$usuarios = file_get_contents("./json/usuarios.json");
+$usuariosArray = explode(PHP_EOL, $usuarios);
+array_pop($usuariosArray);
+
+foreach ($usuariosArray as $key => $usuario) {
+  $usuarioArray = json_decode($usuario, true);
+
+  if ($mail == $usuariosArray["email"] && $pass == $usuariosArray["password"]) {
+    header("location:index.php");
+  }
+  else {
+    header("location:sesion.php?error=1");
+  }
+}
+}
+
+require('php/head.php');?>
+
   <body>
     <!-- comienzo de barra de navegacion -->
     <?php require('php/nav.php') ?>

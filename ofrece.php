@@ -1,4 +1,4 @@
-<?php require('php/head.php'); require('php/array.php'); ?>
+<?php require('php/head.php');  ?>
   <body>
     <!-- comienzo de barra de navegacion -->
     <?php require('php/nav.php') ?>
