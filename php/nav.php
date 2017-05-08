@@ -21,12 +21,12 @@
             $nUsuario = $_COOKIE["usuario"];
             $menu = [
               "Hola, " . $nUsuario => '#',
-              "ofrecé tus servicios" => 'ofrece.php',
-              "ayuda" => 'ayuda.php'
+              "Ofrecé tus servicios" => 'ofrece.php',
+              "Ayuda" => 'ayuda.php'
             ];
           } else {
             $menu = json_decode(file_get_contents('./json/menu.json'),true);
-           
+
           }
  ?>
           <?php foreach ($menu as $itemMenu => $link) { ?>
