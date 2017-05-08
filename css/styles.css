@@ -11,7 +11,7 @@ body {
 
 h1 {
   color: white;
-  margin: 90px auto 10px auto;
+  margin: 50px auto 10px auto;
   font-size: 30px;
   line-height: 30px;
 }
@@ -20,8 +20,12 @@ h2 {
   color: #29C3DB;
 }
 
-.registro, .altura {
-  height: 100vh;
+h3 {
+  color: white;
+}
+
+section {
+  padding: 45px 0;
 }
 
 img {
@@ -262,6 +266,30 @@ no tengo claro cómo serán por eso no le coloco el estilo a la etiqueta general
   font-size: 30px;
 }
 
+.fileContainer {
+    overflow: hidden;
+    position: relative;
+}
+
+.fileContainer [type="file"] {
+    cursor: pointer;
+    display: block;
+    filter: alpha(opacity=0);
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    top: 0;
+}
+
+.fileContainer p {
+  padding: 20px 0;
+  font-size: 20px;
+  font-weight: lighter !important;
+}
+
 /*pagina de inicio de sesión*/
 
 input[type="checkbox"]{
@@ -295,12 +323,25 @@ input[type="checkbox"]{
 
 /*pagina de ayuda*/
 
+
+
 .ayuda h4, .ayuda p, .ayuda a {
   color: white;
+  text-align: center;
 }
 
 .nav-pills li a {
   color: white;
+}
+
+.nav-pills li a:hover {
+  color: #333;
+  background-color: transparent;
+}
+
+.nav-stacked {
+  opacity: 0;
+  position: fixed;
 }
 
 /*pagina ofrece*/
@@ -311,4 +352,14 @@ input[type="checkbox"]{
 .ofrece a {
   color: white;
   font-size: 20px;
+}
+
+/*footer*/
+
+footer {
+  background-color: #333;
+  color: #666;
+  font-size: 12px;
+  line-height: 12px;
+  padding: 20px 0;
 }
