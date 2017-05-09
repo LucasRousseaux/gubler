@@ -39,19 +39,14 @@
         <div class="container">
           <div class="row">
             <h2>Destacados por especialidad</h2>
-            <?php $medico = json_decode(file_get_contents('./json/medicos.json'),true); ?>
+            <?php $medico = leerJson('json/usuarios.json');?>
             <?php foreach ($medico as $value) {
-              foreach ($value as  $key => $doctor) {
-                if($key == 0){
-                  $urlDoctor = $doctor ;
-                }
-                if ($key == 1){
-                  $nombre = $doctor;
-                }
-                if ($key == 2){
-                  $especialidad = $doctor;
-                }
-              };
+              $arrMedico = json_decode($value, true);
+              $nombre = $arrMedico["nombre"];
+              $urlDoctor = $arrMedico["imgPerfil"];
+              $especialidad = $arrMedico["email"];
+
+
               $calificacion = rand(2,5);
               echo "<ul>";
               $estrellas = [];
@@ -66,7 +61,7 @@
               echo '
               <div class="col-sm-6 col-md-4">
                 <article class="doctor">
-                  <img src="images/doctor/'.$urlDoctor.'" alt="">
+                  <img src="images/usuarios/'.$urlDoctor.'" alt="">
                   <div class="elementos-doctor">
                     <h3>'.$nombre.'</h3>
                     <p>'.$especialidad.'</p>
@@ -80,54 +75,13 @@
                   </div>
                 </article>
               </div>';
-            };
+              };
              ?>
           </div>
           <div class="separador"></div>
           <div class="row">
             <h2>Destacados por localidad</h2>
-            <?php foreach ($medico as $value) {
-              foreach ($value as  $key => $doctor) {
-                if($key == 0){
-                  $urlDoctor = $doctor ;
-                }
-                if ($key == 1){
-                  $nombre = $doctor;
-                }
-                if ($key == 2){
-                  $especialidad = $doctor;
-                }
-              };
-              $calificacion = rand(2,5);
-              echo "<ul>";
-              $estrellas = [];
-              $estrellita = '<li><i class="fa fa-star activo"></i></li>';
-              for ($i=0; $i <$calificacion ; $i++) {
-                $estrellas[] = $estrellita;
-              }
-              echo "</ul>";
 
-              $ranking = implode(" ", $estrellas);
-
-              echo '
-              <div class="col-sm-6 col-md-4">
-                <article class="doctor">
-                  <img src="images/doctor/'.$urlDoctor.'" alt="">
-                  <div class="elementos-doctor">
-                    <h3>'.$nombre.'</h3>
-                    <p>'.$especialidad.'</p>
-                    <ul>
-                    '. $ranking . '
-
-                    </ul>
-                    <div class="locacion">
-                      <i class="fa fa-map-marker"><h6>5k</h6></i>
-                    </div>
-                  </div>
-                </article>
-              </div>';
-            };
-             ?>
           </div>
 
         </div>
@@ -135,9 +89,6 @@
       </section>
     </main>
     <!-- fin del main -->
-    <div class="separador">
-
-    </div>
-    <?php require('php/footer.php') ?>
+    <?php require('php/footer.php');?>
     </body>
 </html>

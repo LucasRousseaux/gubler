@@ -10,7 +10,7 @@ function esUnaImagen($ext) {
 
 function tienePesoValido($size) {
 
-	$pesoMaximo = 90000;
+	$pesoMaximo = 9000000;
 	// 90 KB
 
 	if ($size > $pesoMaximo) {
@@ -102,6 +102,22 @@ function tienePesoValido($size) {
 			"id" => traerNuevoId()
 		];
 		return $usuario;
+	}
+
+	function leerJson($miJson){
+		$usuarios = file_get_contents($miJson);
+
+		$usuariosArray = explode(PHP_EOL, $usuarios);
+
+		array_pop($usuariosArray);
+
+		foreach ($usuariosArray as $key => $usuario) {
+			$usuarioArray = json_decode($usuario, true);
+
+			}
+
+		return $usuariosArray;
+
 	}
 
 

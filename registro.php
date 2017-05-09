@@ -43,7 +43,7 @@
                 			// Guardar al usuario en un JSON
                 			guardarUsuario($usuario);
 
-                      $archivo = dirname(__FILE__) . '/images/usuarios/' . $_FILES['imgPerfil']['name'] . '.' . $ext;
+                      $archivo = dirname(__FILE__) . 'images/usuarios/' . $_FILES['imgPerfil']['name'] . '.' . $ext;
                       $upload = move_uploaded_file($_FILES['imgPerfil']['tmp_name'], $archivo);
 
                   		setcookie("usuario", $pNombre, time() + 3600);
