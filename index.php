@@ -8,7 +8,8 @@
     <main>
       <section class="home altura">
         <div class="container">
-          <h1>Bienvenido a <b>Gubler</b><br>¿Qué estás buscando?</h1>
+          <h1>Bienvenido a <b>Gubler</b></h1>
+          <h3>La consulta médica que buscás, ahora al alcance de un click</h3>
           <div class="row">
             <div class="">
               <div class="form-inicio">
