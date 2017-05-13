@@ -10,7 +10,7 @@ function esUnaImagen($ext) {
 
 function tienePesoValido($size) {
 
-	$pesoMaximo = 90000;
+	$pesoMaximo = 5242880;
 	// 90 KB
 
 	if ($size > $pesoMaximo) {

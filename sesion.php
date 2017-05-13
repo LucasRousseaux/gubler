@@ -32,7 +32,6 @@ require('php/head.php');?>
         <div class="container">
           <div class="col-md-offset-2 col-md-8">
             <h2>Iniciá sesión</h2>
-            <h3>La consulta médica que buscás, ahora al alcance de un click</h3>
           </div>
           <div class="row">
             <div class="registro">
