@@ -26,29 +26,33 @@
                 	$pNombre = "";
                 	$pMail = "";
 
+
+
                 	if ($_POST)
                 	{
+
+
                 		$pNombre = $_POST["nombre"];
                 		$pMail = $_POST["email"];
-                		//Acá vengo si me enviaron el form
 
-                		//Validar
                 		$errores = validarUsuario($_POST);
 
-                		// Si no hay errores....
                 		if (empty($errores))
                 		{
-                			$usuario = crearUsuario($_POST);
-                			// Guardar al usuario en un JSON
+
+              			  $usuario = crearUsuario($_POST);
                 			guardarUsuario($usuario);
 
-                      $archivo = dirname(__FILE__) . 'images/usuarios/' . $_FILES['imgPerfil']['name'] . '.' . $ext;
+                      $path = $_FILES['imgPerfil']['tmp_name'];
+                      $ext = pathinfo($path, PATHINFO_EXTENSION);
+                      $archivo = dirname(__FILE__) . '/images/usuarios/' . $_FILES['imgPerfil']['name'] . '.' . $ext;
                       $upload = move_uploaded_file($_FILES['imgPerfil']['tmp_name'], $archivo);
 
                   		setcookie("usuario", $pNombre, time() + 3600);
+                      setcookie("email", $pMail, time() + 3600);
 
-                    	// Reenviarlo a la felicidad
-	                     enviarAFelicidad();
+
+                      enviarAFelicidad();
 
                     }
 
@@ -57,7 +61,7 @@
 
                 ?>
                 <?php if (!empty($errores)) { ?>
-        				<div clas="errores">
+        				<div class="errores">
         					<ul>
         						<?php foreach ($errores as $error) { ?>
         							<li>

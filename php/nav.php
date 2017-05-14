@@ -14,24 +14,18 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav navbar-right">
-
-<?php
+        <?php
          $nUsuario = "";
-          if (isset($_COOKIE["usuario"])) {
-            $nUsuario = $_COOKIE["usuario"];
-            $menu = [
-              "Hola, " . $nUsuario => '#',
-              "Ofrecé tus servicios" => 'ofrece.php',
-              "Ayuda" => 'ayuda.php'
-            ];
-          } else {
-            $menu = json_decode(file_get_contents('./json/menu.json'),true);
+         $menu = json_decode(file_get_contents('./json/menu.json'),true);
 
+           if (isset($_COOKIE["usuario"])) {
+            $menuUsr = [" Hola, ".$_COOKIE["usuario"] => ""];
+            $menu = array_merge($menuUsr,json_decode(file_get_contents('./json/menu_usr.json'),true));
           }
- ?>
-          <?php foreach ($menu as $itemMenu => $link) { ?>
+        ?>
+        <?php foreach ($menu as $itemMenu => $link) { ?>
             <?php echo '<li><a href="'.$link.'">'. $itemMenu . '</a></li>'  ?>
-          <?php } ?>
+        <?php } ?>
         </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

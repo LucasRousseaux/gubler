@@ -20,8 +20,7 @@ function tienePesoValido($size) {
 }
 
 
-	function validarUsuario($miUsuario)
-	{
+function validarUsuario($miUsuario) {
 		$errores = [];
 		$ext = pathinfo($_FILES['imgPerfil']['name'], PATHINFO_EXTENSION);
 
@@ -63,14 +62,12 @@ function tienePesoValido($size) {
 			$errores[] = "La imagen es muy pesada";
 		}
 		return $errores;
-	}
+}
 
-	function existeElMail($mail)
-	{
-		$usuarios = file_get_contents("json/usuarios.json");
+function existeElMail($mail) 	{
 
+		$usuarios = file_get_contents("./json/usuarios.json");
 		$usuariosArray = explode(PHP_EOL, $usuarios);
-
 		array_pop($usuariosArray);
 
 		foreach ($usuariosArray as $key => $usuario) {
@@ -83,17 +80,9 @@ function tienePesoValido($size) {
 		}
 
 		return false;
-	}
+}
 
-	function guardarUsuario($miUsuario)
-	{
-		$usuarioJSON = json_encode($miUsuario);
-
-		file_put_contents("json/usuarios.json", $usuarioJSON . PHP_EOL, FILE_APPEND);
-	}
-
-	function crearUsuario($miUsuario)
-	{
+function crearUsuario($miUsuario) 	{
 		$usuario = [
 			"nombre" => $miUsuario["nombre"],
 			"email" => $miUsuario["email"],
@@ -102,32 +91,121 @@ function tienePesoValido($size) {
 			"id" => traerNuevoId()
 		];
 		return $usuario;
-	}
+}
 
-	function leerJson($miJson){
-		$usuarios = file_get_contents($miJson);
+function guardarUsuario($miUsuario) {
 
+		$usuarioJSON = json_encode($miUsuario);
+		file_put_contents("./json/usuarios.json", $usuarioJSON . PHP_EOL, FILE_APPEND);
+}
+
+function actualizarPerfil($miPerfil,$idUsuario) {
+
+		$perfilesArray = explode(PHP_EOL, file_get_contents("./json/perfiles.json"));
+		array_pop($perfilesArray);
+		$primeraVez = true;
+
+		foreach ($perfilesArray as $key => $value) {
+
+			$perfilArray = json_decode($value, true);
+
+			if ($idUsuario == $perfilArray["id_usuario"])
+			{
+				$perfilArray["sexo"] = $miPerfil["sexo"];
+				$perfilArray["fecha_de_nacimiento"] = $miPerfil["fecha_de_nacimiento"];
+				$perfilArray["numero_de_telefono"] = $miPerfil["numero_de_telefono"];
+				$perfilArray["idioma"] = $miPerfil["idioma"];
+				$perfilArray["lugar_donde_vive"] = $miPerfil["lugar_donde_vive"];
+			}
+
+			$perfilJSON = json_encode($perfilArray);
+			if ($primeraVez){
+				file_put_contents("./json/perfiles.json", $perfilJSON . PHP_EOL);
+			} else {
+				file_put_contents("./json/perfiles.json", $perfilJSON . PHP_EOL, FILE_APPEND);
+			}
+
+			$primeraVez = false;
+
+		}
+
+}
+
+function agregarPerfil($miPerfil,$idUsuario) 	{
+
+		$perfil = [
+			"sexo" => $miPerfil["sexo"],
+			"fecha_de_nacimiento" => $miPerfil["fecha_de_nacimiento"],
+			"numero_de_telefono" => $miPerfil["numero_de_telefono"],
+			"idioma" => $miPerfil["idioma"],
+			"lugar_donde_vive" => $miPerfil["lugar_donde_vive"],
+			"id_usuario" => $idUsuario
+		];
+
+		$perfilJSON = json_encode($perfil);
+		file_put_contents("./json/perfiles.json", $perfilJSON . PHP_EOL, FILE_APPEND);
+
+}
+
+function buscarIdUsuario($mail) {
+
+		$usuarios = file_get_contents("./json/usuarios.json");
 		$usuariosArray = explode(PHP_EOL, $usuarios);
+		array_pop($usuariosArray);
 
+		foreach ($usuariosArray as $key => $usuario) {
+
+			$usuarioArray = json_decode($usuario, true);
+
+			if ($mail == $usuarioArray["email"])
+			{
+				return $usuarioArray["id"];
+			}
+		}
+
+		return 0;
+}
+
+function buscarPerfil($idUsuario) {
+
+		$perfilesJson = file_get_contents("./json/perfiles.json");
+		$perfilesArray = explode(PHP_EOL, $perfilesJson);
+		array_pop($perfilesArray);
+
+		foreach ($perfilesArray as $key => $value) {
+
+			$perfil = json_decode($value, true);
+
+			if ($idUsuario == $perfil["id_usuario"])
+			{
+				return $perfil;
+			}
+		}
+
+		return [];
+}
+
+
+function leerJson($miJson) {
+
+		$usuarios = file_get_contents($miJson);
+		$usuariosArray = explode(PHP_EOL, $usuarios);
 		array_pop($usuariosArray);
 
 		foreach ($usuariosArray as $key => $usuario) {
 			$usuarioArray = json_decode($usuario, true);
 
-			}
+		}
 
 		return $usuariosArray;
 
-	}
+}
 
 
-	function traerNuevoId()
-	{
-		$usuarios = file_get_contents("json/usuarios.json");
+function traerNuevoId() {
 
+		$usuarios = file_get_contents("./json/usuarios.json");
 		$usuariosArray = explode(PHP_EOL, $usuarios);
-
-		//Para quitar el último ENTER
 		array_pop($usuariosArray);
 
 		if (count($usuarios) == 0) {
@@ -136,16 +214,14 @@ function tienePesoValido($size) {
 
 		$ultimoUsuario = $usuariosArray[count($usuariosArray) - 1];
 		$ultimoUsuarioArray = json_decode($ultimoUsuario, true);
-
 		return $ultimoUsuarioArray["id"] + 1;
-	}
+}
 
-	function enviarAFelicidad()
-	{
+function enviarAFelicidad() {
 		header("location:index.php");exit;
 	}
 
-	function tituloPagina() {
+function tituloPagina() {
 		$estoy = dirname(__FILE__);
 
 		$titulo = "Bienvenido";
@@ -162,7 +238,7 @@ function tienePesoValido($size) {
 			$titulo = "preguntas frecuentes";
 		}
 		return $titulo;
-		}
+}
 
 
 ?>
