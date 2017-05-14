@@ -17,7 +17,7 @@
             <div class="registro">
               <div class="col-xs-12 col-sm-12 col-md-12">
                 <div class="textoinicio2">
-                  <p>Ya tenés una cuenta </p><a href="#"> INICIÁ SESIÓN</a>
+                  <p>Ya tenés una cuenta </p><a href="sesion.php"> INICIÁ SESIÓN</a>
                 </div>
              </div>
               <div class="form-inicio">
@@ -45,7 +45,7 @@
                       $archivo = dirname(__FILE__) . '/images/usuarios/' . $_FILES['imgPerfil']['name'] . '.' . $ext;
                       $upload = move_uploaded_file($_FILES['imgPerfil']['tmp_name'], $archivo);
 
-                  		setcookie("usuario", $pNombre, time() + 3600);
+
 
                     	// Reenviarlo a la felicidad
 	                     enviarAFelicidad();

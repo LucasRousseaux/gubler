@@ -17,16 +17,32 @@
 
 <?php
          $nUsuario = "";
+          if (isset($_SESSION["nombre"])) {
+            $nUsuario = $_SESSION["nombre"];
+          };
+
           if (isset($_COOKIE["usuario"])) {
             $nUsuario = $_COOKIE["usuario"];
+          };
+
+          if (isset($_SESSION["nombre"]) || isset($_COOKIE["usuario"])) {
             $menu = [
               "Hola, " . $nUsuario => '#',
+              "Cerrar sesión" => 'index.php?session=1',
               "Ofrecé tus servicios" => 'ofrece.php',
               "Ayuda" => 'ayuda.php'
             ];
-          } else {
+          }
+          else {
             $menu = json_decode(file_get_contents('./json/menu.json'),true);
 
+          };
+
+          if(isset($_GET['session'])){
+            if($_GET['session'] == 1){
+              session_destroy();
+              $menu = json_decode(file_get_contents('./json/menu.json'),true);
+            }
           }
  ?>
           <?php foreach ($menu as $itemMenu => $link) { ?>
