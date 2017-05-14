@@ -1,28 +1,46 @@
-<?php
-
+<?php 
 if ($_POST) {
 
 $mail = $_POST["email"];
 $pass = password_hash($_POST["password"], PASSWORD_DEFAULT);
 $usuarios = file_get_contents("./json/usuarios.json");
-$usuariosArray = explode(PHP_EOL, $usuarios);
-array_pop($usuariosArray);
+$miUsuario = explode(PHP_EOL, $usuarios);
 
-foreach ($usuariosArray as $key => $usuario) {
-  $usuarioArray = json_decode($usuario, true);
+foreach ($miUsuario as $key => $usuario) {
+  $miUsuario = json_decode($usuario, true);
 
-  if ($mail == $usuariosArray["email"] && $pass == $usuariosArray["password"]) {
-    header("location:index.php");
+}
+}
+  if (isset($_POST["email"]) && isset($_POST["password"])) {  
+    if (empty($_POST["email"]) or empty($_POST["password"])) {
+      header("location:sesion.php?error=1");
+    }
+  
+  function existeMail($mail)
+  {
+    $usuarios = file_get_contents("json/usuarios.json");
+
+    $usuariosArray = explode(PHP_EOL, $usuarios);
+
+    array_pop($usuariosArray);
+
+    foreach ($usuariosArray as $key => $usuario) {
+      $usuarioArray = json_decode($usuario, true);
+
+      if ($mail == $usuarioArray["email"])
+      {
+        return true;
+      }
+    }
+
+    return false;
   }
-  else {
+  if (existeMail($mail) && $pass == $miUsuario["password"]) {
+    header("location:index.php");
+  } else {
     header("location:sesion.php?error=1");
   }
-}
-}
-
-require('php/head.php');?>
-
-  <body>
+}require('php/head.php');?>                                                                                           <body>
     <!-- comienzo de barra de navegacion -->
     <?php require('php/nav.php') ?>
     <!-- fin de barra de navegacion -->
@@ -46,7 +64,7 @@ require('php/head.php');?>
                 </div>
               </div>
               <div class="form-inicio">
-                <form class="formulario-home" action="php/inicio-sesion.php" role="form" method="post">
+                <form class="formulario-home" action="sesion.php" role="form" method="post">
                   <!-- He colocado cada input del formulario dentro de un div para incorporarle los anchos de bootstrap -->
                     <div class="col-xs-12 col-sm-4 col-sm-offset-3 col-md-6">
                       <input type="email" name="email" value="" placeholder="Tu mail">
