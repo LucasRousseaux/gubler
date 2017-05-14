@@ -190,6 +190,7 @@ no tengo claro cómo serán por eso no le coloco el estilo a la etiqueta general
 .elementos-doctor h3, .elementos-doctor p {
   text-align: left;
   margin: 10px;
+  color: #686868;
 
 }
 
@@ -251,7 +252,7 @@ no tengo claro cómo serán por eso no le coloco el estilo a la etiqueta general
   color: white;
 }
 
-.registro h3, .help h3 {
+.home h3, .help h3 {
   color: white;
   margin-top: 20px;
 }

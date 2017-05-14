@@ -41,14 +41,15 @@
   /*etiquetas generales*/
 
   h1 {
-    margin: 150px auto 50px auto;
+    margin: 15px auto 50px auto;
     font-size: 60px;
     line-height: 60px;
   }
 
   /*pagina de inicio*/
 
-  .altura, .registro {
+
+  .altura {
     height: 100vh;
   }
 

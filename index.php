@@ -3,12 +3,25 @@
     <!-- comienzo de barra de navegacion -->
     <?php require('php/nav.php') ?>
     <!-- fin de barra de navegacion -->
+    <?php
+    $saludo = "";
+    if (isset($_SESSION["nombre"])) {
+      $userName = $_SESSION["nombre"];
+    };
 
+    if (isset($_COOKIE["usuario"])){
+      $userName = $_COOKIE["usuario"];
+    };
+    if(isset($_GET["user"])){
+      if($_GET["user"] == 1){
+        $saludo = "Hola " . $userName . "<br><br>";
+      }
+    }; ?>
     <!-- comienzo del main -->
     <main>
       <section class="home altura">
         <div class="container">
-          <h1>Bienvenido a <b>Gubler</b></h1>
+          <h1><?php echo $saludo; ?>Bienvenido a <b>Gubler</b></h1>
           <h3>La consulta médica que buscás, ahora al alcance de un click</h3>
           <div class="row">
             <div class="">
