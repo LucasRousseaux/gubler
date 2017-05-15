@@ -51,7 +51,7 @@ if ($_COOKIE)
     <?php require('php/nav.php') ?>
     <main>
 
-      <section class="home perfil">
+      <section class="home perfil altura">
         <div class="container">
 
           <div class="row">

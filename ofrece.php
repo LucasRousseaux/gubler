@@ -6,7 +6,7 @@
 
     <!-- comienzo del main -->
     <main>
-      <section class="home registro">
+      <section class="home registro altura">
         <div class="container">
           <div class="row">
             <div class="ofrece">
