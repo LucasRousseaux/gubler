@@ -48,12 +48,10 @@
                       $archivo = dirname(__FILE__) . '/images/usuarios/' . $_FILES['imgPerfil']['name'] . '.' . $ext;
                       $upload = move_uploaded_file($_FILES['imgPerfil']['tmp_name'], $archivo);
 
-                  		setcookie("usuario", $pNombre, time() + 3600);
+                      setcookie("email", $pMail, time() + 300);
 
                     	// Reenviarlo a la felicidad
 	                     enviarAFelicidad();
-
-                      enviarAFelicidad();
 
                     }
 
@@ -120,6 +118,3 @@
     <?php require('php/footer.php') ?>
   </body>
 </html>
-
-                  		setcookie("usuario", $pNombre, time() + 3600);
-                      setcookie("email", $pMail, time() + 3600);
