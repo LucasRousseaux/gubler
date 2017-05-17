@@ -14,7 +14,6 @@ if ($_POST) {
   $pass = $_POST["password"];
   $usuarios = file_get_contents("./json/usuarios.json");
   $miUsuario = explode(PHP_EOL, $usuarios);
-  $recordar = $_POST["sesion"];
 
   if (isset($_POST["sesion"])) {
     $recordar = $_POST["sesion"];
