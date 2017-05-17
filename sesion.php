@@ -16,6 +16,12 @@ if ($_POST) {
   $miUsuario = explode(PHP_EOL, $usuarios);
   $recordar = $_POST["sesion"];
 
+  if (isset($_POST["sesion"])) {
+    $recordar = $_POST["sesion"];
+  } else {
+    $recordar = 0;
+  }
+
   foreach ($miUsuario as $key => $usuario) {
     $user = json_decode($usuario, true);
 
@@ -81,6 +87,7 @@ if ($_POST) {
                         <p>RECORDARME</p>
                       </div>
                     </div>
+
                   </div>
 
                 </form>
