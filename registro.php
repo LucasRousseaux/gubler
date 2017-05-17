@@ -45,7 +45,7 @@
 
                       $path = $_FILES['imgPerfil']['tmp_name'];
                       $ext = pathinfo($path, PATHINFO_EXTENSION);
-                      $archivo = dirname(__FILE__) . '/images/usuarios/' . $_FILES['imgPerfil']['name'] . '.' . $ext;
+                      $archivo = dirname(__FILE__) . '/images/usuarios/' . $_FILES['imgPerfil']['name'] . $ext;
                       $upload = move_uploaded_file($_FILES['imgPerfil']['tmp_name'], $archivo);
 
                       setcookie("email", $pMail, time() + 300);
