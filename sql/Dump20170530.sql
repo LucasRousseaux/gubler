@@ -302,8 +302,14 @@ CREATE TABLE `usuarios` (
   `nombre` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `imagen` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `sexo` varchar(1) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `fecha_de_nacimiento` datetime DEFAULT NULL,
+  `numero_de_telefono` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lugar_donde_vive` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `idioma` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -312,7 +318,7 @@ CREATE TABLE `usuarios` (
 
 LOCK TABLES `usuarios` WRITE;
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` VALUES (1,'Lucas Rousseaux','lucas@gmail.com','88eae343b7f0b73152f02df220b60a38'),(2,'Rodrigo Trejo','rodrigo@gmail.com','e393d0ff26f8f27bc2b05fa7e7681edd'),(3,'Alicia Perez','alicia@gmail.com','4aeeea6eb88d0e0b3afb2c9c537b63b1'),(4,'Lucas Rousseaux','lucas@gmail.com','88eae343b7f0b73152f02df220b60a38'),(5,'Veronica Olivari','veronica_olivari@hotmail.com','6d6844c5112e37cd61c6720866c7d42e'),(6,'Veronica Olivari','veronica_olivari@hotmail.com','6d6844c5112e37cd61c6720866c7d42e'),(7,'Alicia Perez','alicia@gmail.com','4aeeea6eb88d0e0b3afb2c9c537b63b1'),(8,'Milagros Rousseaux','milagros@gmail.com','94d7234472a189cad24f0c97a1c42b85'),(9,'Milagros','milagros2@gmail.com','94d7234472a189cad24f0c97a1c42b85');
+INSERT INTO `usuarios` VALUES (1,'Lucas Rousseaux','lucas@gmail.com','88eae343b7f0b73152f02df220b60a38',NULL,'1',NULL,NULL,NULL,NULL),(2,'Rodrigo Trejo','rodrigo@gmail.com','e393d0ff26f8f27bc2b05fa7e7681edd',NULL,NULL,NULL,NULL,NULL,NULL),(3,'Alicia Perez','alicia@gmail.com','4aeeea6eb88d0e0b3afb2c9c537b63b1',NULL,NULL,NULL,NULL,NULL,NULL),(4,'Lucas Rousseaux','lucas@gmail.com','88eae343b7f0b73152f02df220b60a38',NULL,NULL,NULL,NULL,NULL,NULL),(5,'Veronica Olivari','veronica_olivari@hotmail.com','6d6844c5112e37cd61c6720866c7d42e',NULL,NULL,NULL,NULL,NULL,NULL),(6,'Veronica Olivari','veronica_olivari@hotmail.com','6d6844c5112e37cd61c6720866c7d42e',NULL,NULL,NULL,NULL,NULL,NULL),(7,'Alicia Perez','alicia@gmail.com','4aeeea6eb88d0e0b3afb2c9c537b63b1',NULL,NULL,NULL,NULL,NULL,NULL),(8,'Milagros Rousseaux','milagros@gmail.com','94d7234472a189cad24f0c97a1c42b85',NULL,NULL,NULL,NULL,NULL,NULL),(9,'Milagros','milagros2@gmail.com','94d7234472a189cad24f0c97a1c42b85',NULL,NULL,NULL,NULL,NULL,NULL),(10,'L','L','d160e0986aca4714714a16f29ec605af90be704d','L',NULL,NULL,NULL,NULL,NULL),(11,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(12,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(13,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(14,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(15,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(16,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(17,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(18,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(19,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(20,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(21,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg','M','1971-02-12 00:00:00','2147483647','HSM L213','Español'),(22,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(23,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg',NULL,NULL,NULL,NULL,NULL),(24,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg','M','1971-02-12 00:00:00','541152996264','HSM L213','Español'),(25,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg','M','1971-02-12 00:00:00','541152996264','HSM L213','Español'),(26,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg','M','1971-02-12 00:00:00','541152996264','HSM L213','Español'),(27,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg','M','1971-02-12 00:00:00','541152996264','HSM L213','Español'),(28,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg','M','1971-02-12 00:00:00','541152996264','HSM L213','Español'),(29,'Lucas','lucas@gmail.com','e2ba04068d9947058358df250aa2ee19b2415c63','doctor.jpg','M','1971-02-12 00:00:00','541152996264','HSM L213','Español');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -325,4 +331,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-05-29 19:41:57
+-- Dump completed on 2017-05-30 20:54:53

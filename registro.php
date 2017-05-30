@@ -26,11 +26,7 @@
                 	$pNombre = "";
                 	$pMail = "";
 
-
-
-                	if ($_POST)
-                	{
-
+                	if ($_POST) {
 
                 		$pNombre = $_POST["nombre"];
                 		$pMail = $_POST["email"];
@@ -48,10 +44,13 @@
                       $archivo = dirname(__FILE__) . '/images/usuarios/' . $_FILES['imgPerfil']['name'] . $ext;
                       $upload = move_uploaded_file($_FILES['imgPerfil']['tmp_name'], $archivo);
 
+                      $_SESSION['nombre'] = $_POST["nombre"];
+                      $_SESSION['email'] = $_POST["email"];
+
                       setcookie("email", $pMail, time() + 300);
 
-                    	// Reenviarlo a la felicidad
-	                     enviarAFelicidad();
+                    	// Reenviar a Index
+	                    enviarAFelicidad();
 
                     }
 

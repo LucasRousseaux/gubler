@@ -18,17 +18,10 @@
          $nUsuario = "";
          $menu = json_decode(file_get_contents('./json/menu.json'),true);
 
-           if (isset($_COOKIE["usuario"])) {
-            $menuUsr = [" Hola, ".$_COOKIE["usuario"] => ""];
+           if (isset($_SESSION['nombre'])) {
+            $menuUsr = [" Hola, ".$_SESSION['nombre'] => ""];
             $menu = array_merge($menuUsr,json_decode(file_get_contents('./json/menu_usr.json'),true));
           };
-
-          if(isset($_GET['session'])){
-            if($_GET['session'] == 1){
-              session_destroy();
-              $menu = json_decode(file_get_contents('./json/menu.json'),true);
-            }
-          }
         ?>
         <?php foreach ($menu as $itemMenu => $link) { ?>
             <?php echo '<li><a href="'.$link.'">'. $itemMenu . '</a></li>'  ?>
