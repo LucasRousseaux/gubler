@@ -1,15 +1,23 @@
 <?php
 
-class Usuario {
+abstract class Constante {
 
+  const DATE_FORMAT = 'Y-m-d';
+  const SCHEMA_NAME = 'gubler';
   const MIN_NUMBER = 1;
-	const MIN_USER = 5;
-	const MIN_PASS = 8;
+  const MIN_USER = 5;
+  const MIN_PASS = 8;
+
+
+}
+
+class Usuario {
 
   private $nombre;
   private $email;
   private $password;
   private $imagen;
+  protected $id;
   private $db;
 
   public function __construct ($db){
@@ -20,31 +28,28 @@ class Usuario {
 
   public function existeUsuario($e) {
 
-  		$sql = "SELECT count(id) FROM usuarios WHERE email = '".$e."'";
+  		$sql = "SELECT id FROM usuarios WHERE email = '".$e."'";
   		$result = $this->db->query($sql);
-  		return $result->fetchColumn();
+      $this->id = $result->fetchColumn();
+      return $this->id;
 
   }
 
 
   public function registrarUsuario ($arr) {
 
+    $this->nombre = $arr['nombre'];
+    $this->email = $arr['email'];
+    $this->password = $arr['password'];
+    $this->imagen = $arr['imagen'];
+
     $sql = "INSERT INTO usuarios (nombre, email, password, imagen) VALUES ('".$arr['nombre']."','".$arr['email']."','".sha1($arr['password'])."','".$arr['imagen']."')";
 		$this->db->query($sql);
-		return $this->db->lastInsertId();
+    $this->id = $this->db->lastInsertId();
+
+		return $this->id;
 
   }
-
-  public function lastIdUsuario() {
-
-    $sql= 'Select count(id) from usuarios';
-    $result = $this->db->query($sql);
-    return $result + 1;
-
-
-  }
-
-
 
 	public function validarEmail($e) {
 
@@ -58,7 +63,7 @@ class Usuario {
 
 	public function validarPassword($p) {
 
-		if(strlen($p) < $this->MIN_PASS) {
+		if(strlen($p) < Constante::MIN_PASS) {
 			return false;
 		}
 
@@ -70,7 +75,7 @@ class Usuario {
 			}
 		}
 
-		if($numero > $this->MIN_NUMBER) {
+		if($numero > Constante::MIN_NUMBER) {
 			return true;
 		}
 
@@ -79,62 +84,76 @@ class Usuario {
 
 	public function validarUsuario($u) {
 
-		if(strlen($u) > $this->MIN_USER) {
+		if(strlen($u) > Constante::MIN_USER) {
 			return true;
 		}
 
 		return false;
 	}
 
-
-// Geters y Seters
-
-
-    public function getIdUsuario() {
-      return $this->id;
-
-    }
-
-
 }
 
-/// ComienzaPrueba
-
-const SCHEMA_NAME = 'gubler';
+/// ComienzaPrueba Creacion Usuario
 
 try {
 
-		$dsn = 'mysql:host=localhost;dbname='.SCHEMA_NAME.';charset=utf8mb4;port:3306';
+		$dsn = 'mysql:host=localhost;dbname='.Constante::SCHEMA_NAME.';charset=utf8mb4;port:3306';
 		$db_user = 'root';
 		$db_pass = '';
 
 		$db = new PDO($dsn, $db_user, $db_pass);
 		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 		$usuario = new Usuario($db);
-    echo "<pre>";
-    var_dump($usuario);
 
-    $arrPrueba = [
+
+
+    $arrPruebaUsuario = [
       'nombre' => 'Lucas',
       'email' => 'lucas@gmail.com',
       'password' => sha1('Lucas123'),
       'imagen' => 'doctor.jpg'
     ];
 
+    $idusuario = $usuario->existeUsuario('belen@gmail.com');
 
-    if ($usuario->existeUsuario('belen@gmail.com') == 0) {
 
-    			$idusuario = $usuario->registrarUsuario($arrPrueba);
+    if (empty ($idusuario)) {
+
+    			$idusuario = $usuario->registrarUsuario($arrPruebaUsuario);
 
     			echo "<pre>";
     			echo "Registro insertado con id: " . $idusuario;
 
+
+
     		} else {
 
     			echo "<pre>";
-    			echo "ERROR: Email existente ";
+    			echo "ERROR: Email existente con id: ". $idusuario;
 
       }
+
+
+      $perfil = new Perfil($db, $idusuario);
+
+
+      $arrPruebaPerfil = [
+        'sexo' => 'M',
+        'fecha_de_nacimiento' => '1971-02-12',
+        'numero_de_telefono' => '541152996264',
+        'lugar_donde_vive'=> 'HSM L213',
+        'idioma' => 'Español'
+      ];
+
+
+      if ($perfil->actualizarUsuario($arrPruebaPerfil) == TRUE ){
+
+        echo "<pre>";
+        echo "Perfil actualizado con id: " . $idusuario;
+
+      }
+
+
 
   }
   catch(PDOException  $e ){
@@ -145,24 +164,36 @@ try {
 
 
 class Perfil extends Usuario {
-  private $id_usuario;
+
   private $sexo;
   private $fecha_de_nacimiento;
   private $numero_de_telefono;
   private $idioma;
   private $lugar_donde_vive;
 
-  public function __construct ($id_usuario,$sexo,$fecha_de_nacimiento,$numero_de_telefono,$idioma,$lugar_donde_vive) {
+  public function  __construct($db,$id) {
 
-    $this->id_usuario = parent::getIdUsuario();
-    $this->sexo = $sexo;
-    $this->fecha_de_nacimiento = $fecha_de_nacimiento;
-    $this->numero_de_telefono = $numero_de_telefono;
-    $this->idioma = $idioma;
-    $this->lugar_donde_vive = $lugar_donde_vive;
-
+    $this->db = $db;
+    $this->id = $id;
 
   }
+
+
+  public function actualizarUsuario($arr) {
+
+		$sql =  "UPDATE usuarios SET ";
+    $sql .= " sexo =  '".$arr['sexo']."',";
+    $sql .= " fecha_de_nacimiento = '".$arr['fecha_de_nacimiento']."',";
+    $sql .= " numero_de_telefono =  '".$arr['numero_de_telefono']."',";
+    $sql .= " lugar_donde_vive =  '".$arr['lugar_donde_vive']."',";
+    $sql .= " idioma =  '".$arr['idioma']."'";
+    $sql .= " WHERE id = ".$this->id;
+
+    $result = $this->db->query($sql);
+		return $result;
+
+
+	}
 
 
 }
