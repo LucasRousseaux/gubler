@@ -3,17 +3,10 @@ require_once("php/funciones.php");
 
 $error = "";
 
-if (isset($_COOKIE["usuario"])){
-  header("location:index.php?user=1");
-}
-
-
 if ($_POST) {
 
   $mail = $_POST["email"];
-  $pass = $_POST["password"];
-  $usuarios = file_get_contents("./json/usuarios.json");
-  $miUsuario = explode(PHP_EOL, $usuarios);
+  $pass = sha1($_POST["password"]);
 
   if (isset($_POST["sesion"])) {
     $recordar = $_POST["sesion"];
@@ -21,21 +14,36 @@ if ($_POST) {
     $recordar = 0;
   }
 
+  $usuarios = file_get_contents("./json/usuarios.json");
+  $miUsuario = explode(PHP_EOL, $usuarios);
+
+  $existe = false;
+
   foreach ($miUsuario as $key => $usuario) {
     $user = json_decode($usuario, true);
 
-    if (($pass == $user['password']) && (existeElMail($mail))) {
-      header("location:index.php?user=1");
-       $_SESSION["nombre"] = $user["nombre"];
-    } else $error = "Usuario y contraseña incorrectos";
-  }
+    if ($pass == $user['password'] && $mail == $user['email']) {
+      $_SESSION['nombre'] = $user['nombre'];
+      $_SESSION['email'] = $user['email'];
+      $existe = true;
 
-  if ($recordar == 1) {
-    setcookie("usuario", $_SESSION["nombre"], time() + 300);
+      if ($recordar == 1) {
+        setcookie('usuario', $user['nombre'], time() + 300);
+        setcookie('email', $user['email'], time() + 300);
+      }
+    }
+  }
+  print_r($existe);
+
+  if ($existe) {
+    header("location:index.php");
+  }  else  {
+    $error = "Usuario y contraseña incorrectos";
   }
 
 }
-?>                                           <body>
+?>
+   <body>
     <!-- comienzo de barra de navegacion -->
     <?php require('php/nav.php') ?>
     <!-- fin de barra de navegacion -->
@@ -70,7 +78,7 @@ if ($_POST) {
 
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-6">
-                      <input type="email" name="email" value="" placeholder="Tu mail">
+                      <input type="email" name="email" value="<?=isset($_COOKIE['email'])?$_COOKIE['email']:''?>" placeholder="Tu mail">
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-6">
                       <input type="password" name="password" value="" placeholder="Contraseña">

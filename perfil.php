@@ -4,7 +4,7 @@
 <?php
 
 
-if ($_COOKIE)
+if ($_SESSION)
 {
 
   $pNombre = "";
@@ -15,11 +15,9 @@ if ($_COOKIE)
   $pIdioma = "";
   $pLugarDondeVive = "";
 
-  $pUsuario = $_COOKIE["usuario"];
-  $pMail = $_COOKIE["email"];
+  $pUsuario = $_SESSION["nombre"];
+  $pMail = $_SESSION["email"];
   $idUsuario = buscarIdUsuario($pMail);
-
-
   $perfil = buscarPerfil($idUsuario);
 
 

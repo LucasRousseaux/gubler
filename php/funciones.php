@@ -86,7 +86,7 @@ function crearUsuario($miUsuario) 	{
 		$usuario = [
 			"nombre" => $miUsuario["nombre"],
 			"email" => $miUsuario["email"],
-			"password" => $miUsuario["pass"],
+			"password" => sha1($miUsuario["pass"]),
 			"imgPerfil" => $_FILES['imgPerfil']['name'],
 			"id" => traerNuevoId()
 		];

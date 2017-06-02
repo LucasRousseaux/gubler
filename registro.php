@@ -47,8 +47,6 @@
                       $_SESSION['nombre'] = $_POST["nombre"];
                       $_SESSION['email'] = $_POST["email"];
 
-                      setcookie("email", $pMail, time() + 300);
-
                     	// Reenviar a Index
 	                    enviarAFelicidad();
 
