@@ -1,5 +1,8 @@
 <?php
 
+namespace GublerSpace
+
+
 abstract class Constante {
 
   const DATE_FORMAT = 'Y-m-d';
@@ -10,6 +13,9 @@ abstract class Constante {
 
 
 }
+
+namespace GublerSpace\UsuarioSpace
+
 
 class Usuario {
 
@@ -93,6 +99,44 @@ class Usuario {
 
 }
 
+
+class Perfil extends Usuario {
+
+  private $sexo;
+  private $fecha_de_nacimiento;
+  private $numero_de_telefono;
+  private $idioma;
+  private $lugar_donde_vive;
+
+  public function  __construct($db,$id) {
+
+    $this->db = $db;
+    $this->id = $id;
+
+  }
+
+
+  public function actualizarUsuario($arr) {
+
+		$sql =  "UPDATE usuarios SET ";
+    $sql .= " sexo =  '".$arr['sexo']."',";
+    $sql .= " fecha_de_nacimiento = '".$arr['fecha_de_nacimiento']."',";
+    $sql .= " numero_de_telefono =  '".$arr['numero_de_telefono']."',";
+    $sql .= " lugar_donde_vive =  '".$arr['lugar_donde_vive']."',";
+    $sql .= " idioma =  '".$arr['idioma']."'";
+    $sql .= " WHERE id = ".$this->id;
+
+    $result = $this->db->query($sql);
+		return $result;
+
+
+	}
+
+
+}
+
+
+
 /// ComienzaPrueba Creacion Usuario
 
 try {
@@ -162,40 +206,5 @@ try {
 
 // Fin Prueba
 
-
-class Perfil extends Usuario {
-
-  private $sexo;
-  private $fecha_de_nacimiento;
-  private $numero_de_telefono;
-  private $idioma;
-  private $lugar_donde_vive;
-
-  public function  __construct($db,$id) {
-
-    $this->db = $db;
-    $this->id = $id;
-
-  }
-
-
-  public function actualizarUsuario($arr) {
-
-		$sql =  "UPDATE usuarios SET ";
-    $sql .= " sexo =  '".$arr['sexo']."',";
-    $sql .= " fecha_de_nacimiento = '".$arr['fecha_de_nacimiento']."',";
-    $sql .= " numero_de_telefono =  '".$arr['numero_de_telefono']."',";
-    $sql .= " lugar_donde_vive =  '".$arr['lugar_donde_vive']."',";
-    $sql .= " idioma =  '".$arr['idioma']."'";
-    $sql .= " WHERE id = ".$this->id;
-
-    $result = $this->db->query($sql);
-		return $result;
-
-
-	}
-
-
-}
 
  ?>
