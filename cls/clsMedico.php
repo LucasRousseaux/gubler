@@ -1,6 +1,6 @@
 <?php
 
-
+namespace Gubler\Med;
 
 class Especialidad {
 
@@ -153,8 +153,8 @@ try {
     $dsn = 'mysql:host=localhost;dbname='.SCHEMA_NAME.';charset=utf8mb4;port:3306';
 		$db_user = 'root';
 		$db_pass = '';
-		$db = new PDO($dsn, $db_user, $db_pass);
-		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$db = new \PDO($dsn, $db_user, $db_pass);
+		$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 
 
     $medico = new Medico($db);
