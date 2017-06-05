@@ -48,10 +48,6 @@ function validarUsuario($miUsuario) {
 		{
 			$errores[] = "El mail tiene forma fea";
 		}
-		if (existeElMail($miUsuario["email"]))
-		{
-			$errores[] = "Usuario ya registrado";
-		}
 		if (empty($_FILES["imgPerfil"])) {
 			$errores[] = "Falta cargar una imagen de perfil";
 		}
@@ -87,14 +83,13 @@ function crearUsuario($miUsuario) 	{
 			"nombre" => $miUsuario["nombre"],
 			"email" => $miUsuario["email"],
 			"password" => sha1($miUsuario["pass"]),
-			"imgPerfil" => $_FILES['imgPerfil']['name'],
-			"id" => traerNuevoId()
+			"imagen" => $_FILES['imgPerfil']['name']
 		];
 		return $usuario;
 }
 
 function guardarUsuario($miUsuario) {
-
+		$miUsuario = array_merge($miUsuario,['id' => traerNuevoId()]);
 		$usuarioJSON = json_encode($miUsuario);
 		file_put_contents("./json/usuarios.json", $usuarioJSON . PHP_EOL, FILE_APPEND);
 }
