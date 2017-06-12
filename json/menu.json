@@ -1,6 +1,6 @@
 {
 	"Ofrece tus servicios": "ofrece.php",
-	"Registrate": "registro.php",
-	"Iniciar Sesion": "sesion.php",
+	"Registrate": "clsregistro.php",
+	"Iniciar Sesion": "clasesesion.php",
 	"Ayuda": "ayuda.php"
 }
