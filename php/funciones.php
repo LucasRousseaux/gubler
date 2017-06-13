@@ -22,7 +22,6 @@ function tienePesoValido($size) {
 
 function validarUsuario($miUsuario) {
 		$errores = [];
-		$ext = pathinfo($_FILES['imgPerfil']['name'], PATHINFO_EXTENSION);
 
 		if (trim($miUsuario["nombre"]) == "")
 		{
@@ -48,16 +47,23 @@ function validarUsuario($miUsuario) {
 		{
 			$errores[] = "El mail tiene forma fea";
 		}
-		if (empty($_FILES["imgPerfil"])) {
-			$errores[] = "Falta cargar una imagen de perfil";
-		}
-		if (!esUnaImagen($ext)) {
-			$errores[] = "El formato de imagen deber ser jpg, png o gif";
-		}
-		if (!tienePesoValido($_FILES["imgPerfil"]["size"])) {
-			$errores[] = "La imagen es muy pesada";
-		}
 		return $errores;
+}
+
+function validarImg($img) {
+	$img = $_FILES['imgPerfil'];
+	$ext = pathinfo($img['name'], PATHINFO_EXTENSION);
+
+	if (empty($img)) {
+		$errores[] = "Falta cargar una imagen de perfil";
+	}
+	if (!esUnaImagen($ext)) {
+		$errores[] = "El formato de imagen deber ser jpg, png o gif";
+	}
+	if (!tienePesoValido($img["size"])) {
+		$errores[] = "La imagen es muy pesada";
+	}
+	return $errores;
 }
 
 function existeElMail($mail) 	{

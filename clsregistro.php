@@ -1,4 +1,5 @@
-<?php require('php/head.php'); ?>
+<?php require('php/head.php');
+require("php/conexion.php");?>
   <body>
     <!-- comienzo de barra de navegacion -->
     <?php require('php/nav.php') ?>
@@ -27,7 +28,7 @@
 
                 	$pNombre = "";
                 	$pMail = "";
-
+                  $pImg = "";
                 	if ($_POST) {
 
                 		$pNombre = $_POST["nombre"];
@@ -41,12 +42,6 @@
 
                         try {
 
-                        		$dsn = 'mysql:host=localhost;dbname='.\Gubler\Constante::SCHEMA_NAME.';charset=utf8mb4;port:3306';
-                        		$db_user = 'root';
-                        		$db_pass = '';
-
-                        		$db = new \PDO($dsn, $db_user, $db_pass);
-                        		$db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
                         		$usuario = new \Gubler\Usr\Usuario($db);
 
                             $id_usuario = $usuario->existeUsuario($pMail);
@@ -70,6 +65,10 @@
                     			guardarUsuario($arr_usuario);
                         }
 
+                      }
+
+                      if (!empty($_FILES['imgPerfil'])) {
+                        validarImg($_FILES['imgPerfil']);
                       }
 
 

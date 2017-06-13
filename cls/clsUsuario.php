@@ -118,7 +118,6 @@ class Perfil extends Usuario {
 
 
   public function actualizarUsuario($arr) {
-
 		$sql =  "UPDATE usuarios SET ";
     $sql .= " sexo =  '".$arr['sexo']."',";
     $sql .= " fecha_de_nacimiento = '".$arr['fecha_de_nacimiento']."',";
@@ -129,9 +128,7 @@ class Perfil extends Usuario {
 
     $result = $this->db->query($sql);
 		return $result;
-
-
-	}
+}
 
 
 }

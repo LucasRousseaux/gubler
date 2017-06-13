@@ -1,6 +1,7 @@
 <?php require('php/head.php');
 require_once("php/funciones.php");
-require("cls/clsUsuario.php");
+// require("cls/clsUsuario.php");
+require("php/conexion.php");
 if($_POST) {
   $mail = $_POST["email"];
   $pass = sha1($_POST["password"]);
@@ -12,39 +13,16 @@ if (isset($_POST["sesion"])) {
   else {
     $recordar = 0;
   }
-$validar = new Gubler\Usr\Usuario($db);
-$errores = array();
-if(!$validar->validarPassword(sha1($arr['password']))) {
-  $errores[] = 'El password no es valido';
-}
-if(!$validar->validarEmail($arr['email'])) {
-  $errores[] = 'El email no es valido';
-}
-if(empty($errores)) {
-  if (\Gubler\Constante::SQL_ACCESS) {
-    try {
-      $dsn = 'mysql:host=localhost;dbname='.\Gubler\Constante::SCHEMA_NAME.';charset=utf8mb4;port:3306';
-      $db_user = 'root';
-      $db_pass = '';
-      $db = new \PDO($dsn, $db_user, $db_pass);
-      $usuario = new \Gubler\Usr\Usuario($db);
-      $usuario->logeo($_POST);
-      }
-    catch(PDOException  $e ) {
-      $errores[] = "Error: ".$e;
-    }
-function logeo($arr){
-  $sql = "SELECT usuario, email FROM usuarios WHERE email = '".$arr['email']."'and password = '".sha1($arr['password'])."'";
-  $result = $this->db->query($sql);
-  $usuario = $result->fetch(PDO::FETCH_ASSOC);
-  if($usuario){
-    session_start();
-    $_SESSION['usuario']=$usuario['usuario'];
-    $_SESSION['email']=$usuario['email'];
-    header('location:index.php');
-    exit();
-  }
-}
+
+// $validar = new Gubler\Usr\Usuario($db);
+// $errores = array();
+// if(!$validar->validarPassword(sha1($arr['password']))) {
+//   $errores[] = 'El password no es valido';
+// }
+// if(!$validar->validarEmail($arr['email'])) {
+//   $errores[] = 'El email no es valido';
+// }
+
 ?>
    <body>
     <!-- comienzo de barra de navegacion -->
