@@ -42,6 +42,23 @@ class Usuario {
 
   }
 
+  public function logeo($arr){
+
+    $sql = "SELECT nombre, email FROM usuarios WHERE email = '".$arr['email']."'and password = '".sha1($arr['password'])."'";
+    $result = $this->db->query($sql);
+    $usuario = $result->fetch(\PDO::FETCH_ASSOC);
+
+
+    if(!empty($usuario)) {
+
+      return $usuario;
+
+    }
+
+    return false;
+
+
+  }
 
   public function registrarUsuario ($arr) {
 
@@ -50,7 +67,7 @@ class Usuario {
     $this->password = $arr['password'];
     $this->imagen = $arr['imagen'];
 
-    $sql = "INSERT INTO usuarios (nombre, email, password, imagen) VALUES ('".$arr['nombre']."','".$arr['email']."','".sha1($arr['password'])."','".$arr['imagen']."')";
+    $sql = "INSERT INTO usuarios (nombre, email, password, imagen) VALUES ('".$arr['nombre']."','".$arr['email']."','".$arr['password']."','".$arr['imagen']."')";
 		$this->db->query($sql);
     $this->id = $this->db->lastInsertId();
 
@@ -70,7 +87,7 @@ class Usuario {
 
 	public function validarPassword($p) {
 
-		if(strlen($p) < Constante::MIN_PASS) {
+		if(strlen($p) < \Gubler\Constante::MIN_PASS) {
 			return false;
 		}
 
@@ -82,7 +99,7 @@ class Usuario {
 			}
 		}
 
-		if($numero > Constante::MIN_NUMBER) {
+		if($numero > \Gubler\Constante::MIN_NUMBER) {
 			return true;
 		}
 
@@ -91,12 +108,24 @@ class Usuario {
 
 	public function validarUsuario($u) {
 
-		if(strlen($u) > Constante::MIN_USER) {
+		if(strlen($u) > \Gubler\Constante::MIN_USER) {
 			return true;
 		}
 
 		return false;
 	}
+
+  public function getNombre() {
+
+    return $this->nombre;
+
+  }
+
+  public function getEmail() {
+
+    return $this->email;
+
+  }
 
 }
 
