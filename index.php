@@ -7,16 +7,10 @@
     $saludo = "";
     if (isset($_SESSION["nombre"])) {
       $userName = $_SESSION["nombre"];
-    };
+      $saludo = "Hola " . $userName . "<br><br>";
 
-    if (isset($_COOKIE["usuario"])){
-      $userName = $_COOKIE["usuario"];
     };
-    if(isset($_GET["user"])){
-      if($_GET["user"] == 1){
-        $saludo = "Hola " . $userName . "<br><br>";
-      }
-    }; ?>
+     ?>
     <!-- comienzo del main -->
     <main>
       <section class="home altura">
@@ -75,7 +69,7 @@
               echo '
               <div class="col-sm-6 col-md-4">
                 <article class="doctor">
-                  <img src="images/usuarios/'.$urlDoctor.'" alt="">
+                  <img src="images/usuarios/'.$urlDoctor  .'" alt="">
                   <div class="elementos-doctor">
                     <h3>'.$nombre.'</h3>
                     <p>'.$especialidad.'</p>

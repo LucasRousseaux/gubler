@@ -35,10 +35,30 @@
 
                 		$errores = validarUsuario($_POST);
 
-                		if (empty($errores))
-                		{
-              			  if (\Gubler\Constante::SQL_ACCESS) {
+                    if (!empty($_FILES['imgPerfil']['name'])) {
+                      $ext = pathinfo($_FILES['imgPerfil']['name'], PATHINFO_EXTENSION);
 
+
+                      if (!esUnaImagen($ext)) {
+                        $errores[] = "El formato de imagen deber ser jpg, png o gif";
+
+                      }
+                      if (!tienePesoValido($_FILES["imgPerfil"]["size"])) {
+                        $errores[] = "La imagen es muy pesada";
+                      }
+
+                      if (empty($errores)) {
+                        $path = $_FILES['imgPerfil']['tmp_name'];
+                        $ext = pathinfo($path, PATHINFO_EXTENSION);
+                        $archivo = dirname(__FILE__) . '/images/usuarios/' . $_FILES['imgPerfil']['name'] . $ext;
+                        $upload = move_uploaded_file($_FILES['imgPerfil']['tmp_name'], $archivo);
+                      }
+
+                    }
+
+
+                		if (empty($errores)) {
+              			  if (\Gubler\Constante::SQL_ACCESS) {
                         try {
 
                         		$dsn = 'mysql:host=localhost;dbname='.\Gubler\Constante::SCHEMA_NAME.';charset=utf8mb4;port:3306';
@@ -50,9 +70,11 @@
                         		$usuario = new \Gubler\Usr\Usuario($db);
 
                             $id_usuario = $usuario->existeUsuario($pMail);
+
                             if (empty ($id_usuario)) {
                               $arr_usuario = crearUsuario($_POST);
                             	$id_usuario = $usuario->registrarUsuario($arr_usuario);
+
                             } else {
                               $errores[] = "Usuario ya registrado";
                             }
@@ -68,21 +90,21 @@
                         } else {
                           $arr_usuario = crearUsuario($_POST);
                     			guardarUsuario($arr_usuario);
+
                         }
 
                       }
 
+                      if (empty($errores)) {
 
-                      $path = $_FILES['imgPerfil']['tmp_name'];
-                      $ext = pathinfo($path, PATHINFO_EXTENSION);
-                      $archivo = dirname(__FILE__) . '/images/usuarios/' . $_FILES['imgPerfil']['name'] . $ext;
-                      $upload = move_uploaded_file($_FILES['imgPerfil']['tmp_name'], $archivo);
+                        $_SESSION['nombre'] = $_POST["nombre"];
+                        $_SESSION['email'] = $_POST["email"];
+                        // Reenviar a Index
+  	                    enviarAFelicidad();
 
-                      $_SESSION['nombre'] = $_POST["nombre"];
-                      $_SESSION['email'] = $_POST["email"];
+                        }
 
-                    	// Reenviar a Index
-	                    enviarAFelicidad();
+
 
                     }
 

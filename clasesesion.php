@@ -2,17 +2,14 @@
 require('php/head.php');
 require("cls/clsUsuario.php");
 
-
-if (isset($_POST["sesion"])) {
-  $recordar = $_POST["sesion"];
-} else {
-  $recordar = 0;
-}
-
 if($_POST) {
   $mail = $_POST["email"];
   $pass = sha1($_POST["password"]);
   $error = "";
+
+  if (isset($_POST["sesion"])) {
+    setcookie("email", $_POST["email"], time()+3600);
+  }
 
 if (\Gubler\Constante::SQL_ACCESS) {
 
@@ -111,7 +108,7 @@ if(empty($errores)) {
 
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-6">
-                      <input type="email" name="email" value="<?php isset($_COOKIE['email'])?$_COOKIE['email']:''?>" placeholder="Tu mail">
+                      <input type="email" name="email" value="<?= isset($_COOKIE['email'])?$_COOKIE['email']:''?>" placeholder="Tu mail">
                     </div>
                     <div class="col-xs-12 col-sm-4 col-md-6">
                       <input type="password" name="password" value="" placeholder="Contraseña">
