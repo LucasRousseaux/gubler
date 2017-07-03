@@ -3,6 +3,7 @@
     <!-- comienzo de barra de navegacion -->
     <?php require('php/nav.php') ?>
     <!-- fin de barra de navegacion -->
+    <script type="text/javascript" src="/js/script.js"></script>
 
     <!-- comienzo del main -->
     <main>
@@ -57,7 +58,7 @@
 
                 ?>
                 <?php if (!empty($errores)) { ?>
-        				<div class="errores">
+        				<div id='errores' class="errores">
         					<ul>
         						<?php foreach ($errores as $error) { ?>
         							<li>
@@ -70,16 +71,16 @@
                 <form class="formulario-home" action="registro.php" method="post" enctype="multipart/form-data">
                   <!-- He colocado cada input del formulario dentro de un div para incorporarle los anchos de bootstrap -->
                   <div class="col-xs-12 col-sm-6 col-md-6">
-                    <input type="text" name="nombre" value="<?php echo $pNombre; ?>" placeholder="Nombre">
+                    <input type="text" name="nombre" id='nombre' value="<?php echo $pNombre; ?>" placeholder="Nombre">
                   </div>
                   <div class="col-xs-12 col-sm-6 col-md-6">
-                    <input type="email" name="email" value="<?php echo $pMail; ?>" placeholder="Email">
+                    <input type="email" name="email" id='email' value="<?php echo $pMail; ?>" placeholder="Email">
                   </div>
                   <div class="col-xs-12 col-sm-6 col-md-6">
-                    <input type="password" name="pass" value="" placeholder="Contraseña">
+                    <input type="password" name="pass" id='pass' value="" placeholder="Contraseña">
                   </div>
                   <div class="col-xs-12 col-sm-6 col-md-6">
-                    <input type="password" name="cpass" value="" placeholder="Confirmá tu contraseña">
+                    <input type="password" name="cpass" id='cpass' value="" placeholder="Confirmá tu contraseña">
                   </div>
                   <div class="col-xs-12 col-sm-6 col-md-6">
                     <label class="fileContainer">
@@ -91,7 +92,7 @@
                     <div class="botonera">
                       <div class="col-xs-12 col-md-offset-2 col-md-8 col-sm-offset-1 col-sm-10">
                         <div class="col-xs-12 col-sm-6 col-md-offset-3 col-md-6">
-                          <button type="submit" name="" value=""><i class="glyphicon glyphicon-ok" aria-hidden="true"></i></button>
+                          <button type="submit" name="" value="" id="btn-submit"><i class="glyphicon glyphicon-ok" aria-hidden="true"></i></button>
                         </div>
 
                         <div class="col-xs-12 col-sm-6 col-md-12">
@@ -113,5 +114,7 @@
         </div>
       </section>
     <?php require('php/footer.php') ?>
+
+
   </body>
 </html>
